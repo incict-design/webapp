@@ -26,7 +26,6 @@ header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 /* ================================
    ✨ 華やかなボタンスタイル
    ================================ */
-/* --- 華やかなボタンスタイル（色を少し濃く） --- */
 .fancy-btn {
   padding: 10px 16px;
   border: none;
@@ -43,12 +42,10 @@ header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   background: linear-gradient(135deg, #5ed4ff 0%, #3e7bff 100%);
   box-shadow: 0 4px 10px rgba(62, 123, 255, 0.45);
 }
-
 .fancy-blue:hover {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 14px rgba(62, 123, 255, 0.65);
 }
-
 .fancy-blue:active {
   transform: scale(0.97);
 }
@@ -58,16 +55,13 @@ header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   background: linear-gradient(135deg, #f5c242 0%, #f48c3e 100%);
   box-shadow: 0 4px 10px rgba(244, 140, 62, 0.45);
 }
-
 .fancy-gold:hover {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 14px rgba(244, 140, 62, 0.65);
 }
-
 .fancy-gold:active {
   transform: scale(0.97);
 }
-
 </style>
 </head>
 
@@ -90,32 +84,32 @@ header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('tomorrow')">12/4（木）</button>
   <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('following')">12/5（金）</button>
   <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('notice')">12/6（土）</button>
-<button class="date-button fancy-btn fancy-blue" onclick="showSchedule('xmas')">諸連絡</button>
-
- <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('stay1')">1泊目</button>
-
-<button class="date-button fancy-btn fancy-blue" onclick="showSchedule('stay2')">3泊目</button>
-
+  <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('xmas')">緊急</button>
+  <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('stay1')">1泊目</button>
+  <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('stay2')">3泊目</button>
+  <button class="date-button fancy-btn fancy-blue" onclick="showSchedule('inquiry')">探究</button>
 </div>
 
 <div id="scheduleDisplay" class="schedule-display">
   <div id="scheduleDate" class="schedule-date"></div>
   <div id="scheduleContent" class="schedule-content"></div>
 </div>
-  
-<br>
-  <br>
-  <br>
 
+<br><br><br>
 
-
-  
-<!-- Webページ -->
+<!-- Webページ① -->
 <div id="drawArea" style="max-height:600px; overflow-y:auto;">
   <iframe src="https://incict-design.github.io/oekaki/" allowfullscreen
     style="width:100%; height:600px; border:none; border-radius:6px;">
   </iframe>
 </div>
+
+<br>
+
+
+<!-- ⭐ここに trip.jpg を表示（新規追加）⭐ -->
+<img src="trip.jpg" alt="Trip Image"
+     style="width:100%; margin-top:10px; border-radius:6px;">
 
 <div id="overlay"><img id="overlayImg" src=""></div>
 
@@ -129,24 +123,13 @@ header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 // ===== おみくじ・スケジュール =====
 const scheduleData = {
   'today': { date: '1日目', content: '<div>06時50分：バス（3号車）に集合＠大甕駅東口信号渡る</div><div>お弁当を配布しますが飲み物は各自持参です<div/><div>11時45分：羽田空港発</div><div>14時25分：那覇空港着</div><div>15時30分：平和祈念公園</div><div>17時00分～19時30分：国際通り</div><div>20時00分：ホテル着</div><div>22時30分：点呼</div>' },
-
- 'tomorrow': { date: '2日目', content: '<div>06時00分：起床</div><div>06時50分：スーツケース積込</div><div>07時00分：朝食「守礼の間」</div><div>08時00分：バス出発</div><div>09時30分～12時30分：おきなわ世界塾</div><div>昼食はバスの中でお弁当配布</div><div>15時00分：本部港発</div><div>15時00分：伊江港着</div><div>入島式は民泊班ごとに整列</div>' },
-
+  'tomorrow': { date: '2日目', content: '<div>06時00分：起床</div><div>06時50分：スーツケース積込</div><div>07時00分：朝食「守礼の間」</div><div>08時00分：バス出発</div><div>09時30分～12時30分：おきなわ世界塾</div><div>昼食はバスの中でお弁当配布</div><div>15時00分：本部港発</div><div>15時00分：伊江港着</div><div>入島式は民泊班ごとに整列</div>' },
   'following': { date: '3日目', content: '<div>マリン体験や家業体験</div><div>昼食は各家庭</div><div>13時00分：伊江港発</div><div>13時30分：本部港着</div><div>14時10分～16時40分：美ら海水族館</div><div>15時40分：ホテル着</div><div>18時15分～21時00分：夕食＋ライブ</div><div>22時35分：点呼</div>' },
- 
   'notice': { date: '4日目', content: '<div>起床</div><div>06時40分：スーツケース積込</div><div>06時50分：朝食「3階ウマンチュ&マジュン」</div><div>08時30分：出発</div><div>09時30分～10時30分：首里城公園（クラス写真）</div><div>12時15分：那覇空港発</div><div>昼食は機内でお弁当配布</div><div>14時30分：羽田空港着</div><div>18時00分：友部SA着（買い物禁止）</div><div>18時00分：学校南駐車場着</div>' },
-
- 'xmas': { date: '諸連絡', content: '<div>【緊急】050-7100-1877</div><div>【Classi】スマホにインストールして通知はオン</div><div>【防寒着】防寒着を「行きのバス」に預ける場合は「自分のものである目印」が必要。ポケットに紙を入れておくとか。</div>' },
-
-
- 'stay1': { date: '1泊目', content: '<div>【512】618大川,612沼田,617岩間</div><div>【513】611千葉,616石井,632緑川</div><div>【514】607清末,613藤田,630藤澤</div><div>【515】609重野,603大森颯斗,623杉山</div><div>【516】624助川,604大森麗夢,627鈴木颯斗</div><div>【517】602海野,605尾形</div><div>【706】606小野瀬,621桑野,626鈴木撫子</div><div>【707】631堀江,619大平,622軍司</div><div>【708】615猪狩,625鈴木聖徠,629野﨑</div><div>【709】601赤津,608小室,610関谷</div><div>【709】620金田,614浅野,628鈴木萌恵</div>' },
-
-
- 'stay2': { date: '3泊目', content: '<div>【524】609重野,603大森颯斗,611千葉,623杉山,632緑川</div><div>【525】624助川,604大森麗夢,616石井,627鈴木颯斗</div><div>【526】607清末,602海野,605尾形,613藤田</div><div>【527】618大川,612沼田,617岩間,630藤澤</div><div>【613】621桑野,601赤津,625鈴木聖徠,626鈴木撫子,629野崎</div><div>【614】606小野瀬,608小室,610関谷,615猪狩,628鈴木萌恵</div><div>【615】620金田,614浅野,619大平,622軍司.631堀江</div>' }
-
-
-
-
+  'xmas': { date: '緊急', content: '<div>【緊急】050-7100-1877</div><div>杉浦【501】/【522】</div><div>藤本【524】/【514】</div><div>赤津【611】/【515】</div><div>萩谷【612】/【503】</div><div>宇佐美【613】/【523】</div><div>阿久津【614】/【536】</div><div>一瀬【701】/【616】</div><div>小圷【702】/【602】</div><div>大森【723】/【621】</div><div>新井【724】/【603】</div>' },
+  'stay1': { date: '1泊目', content: '...' },
+  'stay2': { date: '3泊目', content: '...' },
+  'inquiry': { date: '探究（38人）', content: '...' }
 };
 
 const omikujiResults = [
@@ -185,8 +168,7 @@ function showSchedule(k){
   document.getElementById("scheduleContent").innerHTML=scheduleData[k].content;
   document.getElementById("scheduleDisplay").style.display="block";
 }
-
-// ===== Firebase 画像共有 =====
 </script>
+
 </body>
 </html>
